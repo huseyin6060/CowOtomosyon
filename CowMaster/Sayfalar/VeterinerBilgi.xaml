@@ -1,0 +1,728 @@
+﻿<UserControl x:Class="CowMaster.Sayfalar.VeterinerBilgi"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:kısıtlamalar="clr-namespace:CowMaster.kısıtlamalar"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="1000"
+             d:DesignWidth="1400">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden"
+              HorizontalScrollBarVisibility="Disabled"
+              PanningMode="VerticalOnly"
+              CanContentScroll="True">
+        <Grid  Margin="15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+   
+        <Border Grid.Row="0" Height="90"
+                Background="#0F172A"
+                CornerRadius="20"
+                Padding="22"
+                Margin="0,0,0,15">
+           
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal">
+
+                    <Border Width="45"
+                            Height="45"
+                            CornerRadius="18"
+                            Background="#1E293B">
+
+                        <Viewbox>
+                            <TextBlock Text="💉" />
+                        </Viewbox>
+
+                    </Border>
+
+                    <StackPanel Margin="20,-5,0,2">
+
+                        <TextBlock Text="Veteriner  Sağlık Yönetim Merkezi"
+                                   FontSize="25"
+                                   FontWeight="Black"
+                                   Foreground="White"/>
+
+                        <TextBlock Text="Hayvan sağlık kayıtları • Aşı takibi • Veteriner işlemleri"
+                                   Foreground="#CBD5E1"
+                                   FontSize="13"
+                                   Margin="0,0,0,0"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+
+
+
+                        <Border Background="SteelBlue"  CornerRadius="12"  Padding="2">
+
+                            <Button Click="btnVeterinerEkle_Click" Style="{StaticResource MaterialDesignFlatButton}"
+                                    Foreground="Black" FontWeight="Bold"   Height="40" materialDesign:RippleAssist.Feedback="Black" Cursor="Hand">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Plus" Width="22" Height="22" VerticalAlignment="Center"/>
+                                    <TextBlock Text="VETERİNER EKLE" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+
+                        </Border>
+
+                    </StackPanel>
+
+            </Grid>
+
+        </Border>
+
+    
+        <Grid Grid.Row="1"
+      Margin="0,0,0,25">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+     
+            <Border Grid.Column="0" Margin="0,0,10,0" Background="White" CornerRadius="20" Padding="15" Height="90">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15" Direction="-90" ShadowDepth="1" Color="#E2E8F0"/>
+                </Border.Effect>
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Width="50" Height="50" CornerRadius="12" Background="#DBEAFE">
+                        <Viewbox Margin="10">
+                            <TextBlock Text="🐄"/>
+                        </Viewbox>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="Toplam Hayvan" FontSize="13" FontWeight="SemiBold" Foreground="#64748B"/>
+                        <TextBlock x:Name="txtToplamHayvan" Text="0" FontSize="26" FontWeight="Black" Foreground="#0F172A"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+      
+            <Border Grid.Column="1" Margin="0,0,10,0" Background="White" CornerRadius="20" Padding="15" Height="90">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15" Direction="-90" ShadowDepth="1" Color="#E2E8F0"/>
+                </Border.Effect>
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Width="50" Height="50" CornerRadius="12" Background="#FEE2E2">
+                        <Viewbox Margin="10">
+                            <TextBlock Text="🩺"/>
+                        </Viewbox>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="Hasta Hayvan" FontSize="13" FontWeight="SemiBold" Foreground="#64748B"/>
+                        <TextBlock x:Name="txtHasta" Text="0" FontSize="26" FontWeight="Black" Foreground="#DC2626"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+      
+            <Border Grid.Column="2" Margin="0,0,10,0" Background="White" CornerRadius="20" Padding="15" Height="90">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15" Direction="-90" ShadowDepth="1" Color="#E2E8F0"/>
+                </Border.Effect>
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Width="50" Height="50" CornerRadius="12" Background="#DCFCE7">
+                        <Viewbox Margin="10">
+                            <TextBlock Text="💉"/>
+                        </Viewbox>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="Bugünkü Aşı" FontSize="13" FontWeight="SemiBold" Foreground="#64748B"/>
+                        <TextBlock x:Name="txtAsi" Text="0" FontSize="26" FontWeight="Black" Foreground="#16A34A"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+      
+            <Border Grid.Column="3" Background="White" CornerRadius="20" Padding="15" Height="90">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15" Direction="-90" ShadowDepth="1" Color="#E2E8F0"/>
+                </Border.Effect>
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Width="50" Height="50" CornerRadius="12" Background="#FEF3C7">
+                        <Viewbox Margin="10">
+                            <TextBlock Text="💰"/>
+                        </Viewbox>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="Aylık Gider" FontSize="13" FontWeight="SemiBold" Foreground="#64748B"/>
+                        <TextBlock x:Name="txtMaliyet" Text="0 ₺" FontSize="22" FontWeight="Black" Foreground="#D97706"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+        </Grid>
+
+
+        <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1.2*"/>
+            </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" Margin="10,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.8*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <materialDesign:Card Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" UniformCornerRadius="25" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="#1E293B" CornerRadius="25,25,0,0" Padding="12">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Cow" Foreground="#22C55E" Width="22" Height="22" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Hayvanlar (Seçim Yapınız)" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <DataGrid x:Name="dgHayvanlar" 
+                                          
+                                          
+                      ScrollViewer.CanContentScroll="False"
+            
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                          
+                                          Grid.Row="1" Margin="5" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Background="Transparent" BorderThickness="0" GridLinesVisibility="None" RowHeight="38" SelectionUnit="FullRow" SelectionChanged="dgHayvanlar_SelectionChanged_1">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="ID" Binding="{Binding hayvan_id}" Visibility="Hidden" Width="Auto"/>
+                                        <DataGridTextColumn Header="Küpe No" Binding="{Binding kupe_no}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Irk" Binding="{Binding irk}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Cinsiyeti" Binding="{Binding cinsiyet}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Adı" Binding="{Binding hayvan_adi}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Türü" Binding="{Binding tur}" Width="Auto"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </materialDesign:Card>
+
+                        <materialDesign:Card Grid.Row="1" Grid.Column="0" Margin="5" UniformCornerRadius="25">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="#1E293B" CornerRadius="25,25,0,0" Padding="12">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Virus" Foreground="#EF4444" Width="22" Height="22" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Hastalıklar" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <DataGrid x:Name="dgHastaliklar"
+                                          
+                                          
+                      ScrollViewer.CanContentScroll="False"
+                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                          
+                                          Grid.Row="1" Margin="5" AutoGenerateColumns="False" IsReadOnly="True" BorderThickness="0" GridLinesVisibility="None" SelectionChanged="dgHastaliklar_SelectionChanged">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Hastalık" Binding="{Binding hastalik_adi}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Belirti" Binding="{Binding belirtiler}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Bulaşıcı" Binding="{Binding bulasici}" Width="Auto"/>
+
+
+                                        <DataGridTemplateColumn Header="GÜNCELLE" Width="Auto">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Style="{StaticResource MaterialDesignIconButton}"
+                              Foreground="SteelBlue"
+                              Width="30"  Height="30" Click="Guncelle1_Click">
+
+                                                        <materialDesign:PackIcon Kind="PencilOutline" Width="18"/>
+
+                                                    </Button>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+
+                                        <DataGridTemplateColumn Header="SİL" Width="Auto">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Style="{StaticResource MaterialDesignIconButton}"
+                          Foreground="#EF4444"
+                          Width="30" Height="30" Click="Sil1_Click">
+
+                                                        <materialDesign:PackIcon Kind="DeleteOutline" Width="18"/>
+
+                                                    </Button>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+
+
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </materialDesign:Card>
+
+                        <materialDesign:Card Grid.Row="1" Grid.Column="1" Margin="5" UniformCornerRadius="25">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="#1E293B" CornerRadius="25,25,0,0" Padding="12">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="MedicalBag" Foreground="#38BDF8" Width="22" Height="22" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Veteriner" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <DataGrid x:Name="dgVeteriner"
+                                          
+                                          
+                                          
+                      ScrollViewer.CanContentScroll="False"
+                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                          
+                                          Grid.Row="1" Margin="5" AutoGenerateColumns="False" IsReadOnly="True" BorderThickness="0" GridLinesVisibility="None" SelectionChanged="dgVeteriner_SelectionChanged">
+                                    <DataGrid.Columns>
+                                    
+                                     
+                                        
+                                        <DataGridTextColumn Header="Veteriner Ad" Binding="{Binding ad}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Veteriner Soyad" Binding="{Binding soyad}" Width="Auto"/>
+
+                                        <DataGridTextColumn Header="İşlem Türü" Binding="{Binding islem_turu}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Kullanılan ilaç" Binding="{Binding ilac_adi}" Width="Auto"/>
+                                        <DataGridTextColumn Header="İşlem Tarihi" Binding="{Binding tarih}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Sonraki Kontrol" Binding="{Binding sonraki_kontrol}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Maliyet" Binding="{Binding maliyet}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Açıklam" Binding="{Binding tedavi}" Width="Auto"/>
+
+
+                                        <DataGridTemplateColumn Header="GÜNCELLE" Width="Auto">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Style="{StaticResource MaterialDesignIconButton}"
+                                                            Foreground="SteelBlue"
+                                                            Width="30"  Height="30" Click="Guncelle2_Click">
+
+                                                        <materialDesign:PackIcon Kind="PencilOutline" Width="18"/>
+
+                                                    </Button>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+
+                                        <DataGridTemplateColumn Header="SİL" Width="Auto">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Style="{StaticResource MaterialDesignIconButton}"
+                                                            Foreground="#EF4444"
+                                                             Width="30" Height="30" Click="Sil2_Click">
+
+                                                        <materialDesign:PackIcon Kind="DeleteOutline" Width="18"/>
+
+                                                    </Button>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </materialDesign:Card>
+
+                        <materialDesign:Card Grid.Row="2" Grid.Column="0" Margin="5" UniformCornerRadius="25">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="#1E293B" CornerRadius="25,25,0,0" Padding="12">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Needle" Foreground="#22C55E" Width="22" Height="22" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Aşı Takip" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <DataGrid x:Name="dgAsiTakip" 
+                                          
+                                          
+                                          
+                      ScrollViewer.CanContentScroll="False"
+                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                          
+                                          Grid.Row="1" Margin="5" AutoGenerateColumns="False" IsReadOnly="True" BorderThickness="0" GridLinesVisibility="None" SelectionChanged="dgAsiTakip_SelectionChanged">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Aşı" Binding="{Binding asi_adi}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Tarih" Binding="{Binding yapilma_tarihi}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Tekrar Tarihi" Binding="{Binding tekrar_tarihi}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Durum" Binding="{Binding durum}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Açıklma" Binding="{Binding aciklama}" Width="Auto"/>
+
+                                        <DataGridTemplateColumn Header="GÜNCELLE" Width="Auto">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Style="{StaticResource MaterialDesignIconButton}"
+                       Foreground="SteelBlue"
+                       Width="30"  Height="30" Click="Guncelle3_Click">
+
+                                                        <materialDesign:PackIcon Kind="PencilOutline" Width="18"/>
+
+                                                    </Button>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+
+                                        <DataGridTemplateColumn Header="SİL" Width="Auto">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Style="{StaticResource MaterialDesignIconButton}"
+                       Foreground="#EF4444"
+                        Width="30" Height="30" Click="Sil3_Click">
+
+                                                        <materialDesign:PackIcon Kind="DeleteOutline" Width="18"/>
+
+                                                    </Button>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </materialDesign:Card>
+
+                        <materialDesign:Card Grid.Row="2" Grid.Column="1" Margin="5" UniformCornerRadius="25">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="#1E293B" CornerRadius="25,25,0,0" Padding="12">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="HeartPulse" Foreground="#FB7185" Width="22" Height="22" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Gebelik" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <DataGrid x:Name="dgGebelik" 
+                                          
+                                          
+                                         
+                      ScrollViewer.CanContentScroll="False"
+                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                          
+                                          
+                                          Grid.Row="1" Margin="5" AutoGenerateColumns="False" IsReadOnly="True" BorderThickness="0" GridLinesVisibility="None" SelectionChanged="dgGebelik_SelectionChanged">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Tohumlama Tarihi" Binding="{Binding tohumlama_tarihi}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Kontrol Tarihi" Binding="{Binding kontrol_tarihi}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Tahmini Doğum Tarihi" Binding="{Binding tahmini_dogum}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Durum" Binding="{Binding durum}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Açıklama" Binding="{Binding veteriner_notu}" Width="Auto"/>
+
+                                        <DataGridTemplateColumn Header="GÜNCELLE" Width="Auto">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Style="{StaticResource MaterialDesignIconButton}"
+                       Foreground="SteelBlue"
+                       Width="30"  Height="30" Click="Guncelle4_Click">
+
+                                                        <materialDesign:PackIcon Kind="PencilOutline" Width="18"/>
+
+                                                    </Button>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+
+                                        <DataGridTemplateColumn Header="SİL" Width="Auto">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Style="{StaticResource MaterialDesignIconButton}"
+                       Foreground="#EF4444"
+                        Width="30" Height="30" Click="Sil4_Click">
+
+                                                        <materialDesign:PackIcon Kind="DeleteOutline" Width="18"/>
+
+                                                    </Button>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </materialDesign:Card>
+                    </Grid>
+                </Grid>
+
+
+
+                <Border Grid.Column="3" Margin="15,0,0,0" Background="White" CornerRadius="20" Padding="25">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="20" ShadowDepth="4" Opacity="0.1" Color="#1A237E"/>
+                </Border.Effect>
+
+              
+                    <StackPanel>
+                     
+                        <TextBlock Text="Sağlık ve Veteriner Yönetimi" FontSize="22" FontWeight="Bold" Foreground="#1E293B"/>
+                        <TextBlock Text="Tüm tıbbi süreçleri buradan yönetin." FontSize="12" Foreground="#64748B" Margin="0,5,0,20"/>
+
+                       
+                        <TextBox x:Name="txtKupeNo" materialDesign:HintAssist.Hint="Seçilen Hayvan (Küpe No)" 
+                     IsReadOnly="True" Margin="0,0,0,15" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:TextFieldAssist.PrefixText="🆔 " FontWeight="Bold"
+                     materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+
+                       
+                        <Border Background="#F8FAFC" CornerRadius="15" Padding="15" Margin="0,0,0,15" BorderBrush="#E2E8F0" BorderThickness="1">
+                            <StackPanel>
+                                <TextBlock Text="Klinik Muayene ve Tedavi" FontWeight="Bold" Foreground="#2563EB" Margin="0,0,0,12"/>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ComboBox x:Name="cbHastalik" Grid.Column="0" materialDesign:HintAssist.Hint="Teşhis / Hastalık" 
+                                  Style="{StaticResource MaterialDesignOutlinedComboBox}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+                                    <ComboBox x:Name="cbVeteriner" Grid.Column="2" materialDesign:HintAssist.Hint="Görevli Veteriner" 
+                                  Style="{StaticResource MaterialDesignOutlinedComboBox}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+                                </Grid>
+
+                                <Grid Margin="0,12,0,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="txtIslemTuru" Grid.Column="0" kısıtlamalar:InputKisitlayici.SadeceMetin="True" materialDesign:HintAssist.Hint="İşlem Türü (Muayene vb.)" 
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+                                    <TextBox x:Name="txtIlacAdi" Grid.Column="2" kısıtlamalar:InputKisitlayici.SadeceMetin="True"  materialDesign:HintAssist.Hint="Kullanılan İlaç" 
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <DatePicker x:Name="dtIslemTarihi" Grid.Column="0" materialDesign:HintAssist.Hint="İşlem Tarihi" 
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+                                    <DatePicker x:Name="dtSonrakiKontrol" Grid.Column="2" materialDesign:HintAssist.Hint="Sonraki Kontrol" 
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+                                </Grid>
+
+                                <TextBox x:Name="txtMaliyetler" kısıtlamalar:InputKisitlayici.SadeceSayi="True" materialDesign:HintAssist.Hint="İşlem Maliyeti" 
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:TextFieldAssist.PrefixText="₺ "
+                             materialDesign:TextFieldAssist.TextFieldCornerRadius="12" Margin="0,0,0,12"/>
+
+                                <TextBox x:Name="txtTedaviNotu" kısıtlamalar:InputKisitlayici.SadeceMetin="True" Height="80" materialDesign:HintAssist.Hint="Tedavi Detayları ve Açıklama" 
+                             TextWrapping="Wrap" AcceptsReturn="True" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                             materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+
+                                <Button  Click="btnKaydet_Click" Height="45" Background="SteelBlue" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="15" Margin="0,15,0,10">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="ContentSaveCheck" Width="24" Height="24" Margin="0,0,10,0"/>
+                                        <TextBlock Text="MUAYENE / TEDAVİ" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+
+                            </StackPanel>
+                        </Border>
+
+
+
+                        <Border Background="#F0FDF4" CornerRadius="15" Padding="15" Margin="0,0,0,15" BorderBrush="#DCFCE7" BorderThickness="1">
+                            <StackPanel>
+                                <TextBlock Text="Hastalık" FontWeight="Bold" Foreground="Red" Margin="0,0,0,12"/>
+
+                                <TextBox x:Name="txtHastalıkAdi" kısıtlamalar:InputKisitlayici.SadeceMetin="True" materialDesign:HintAssist.Hint="Hastalık Adı" 
+     Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12" Margin="0,0,0,12"/>
+                                <TextBox x:Name="txtbelirtiler" kısıtlamalar:InputKisitlayici.SadeceMetin="True" materialDesign:HintAssist.Hint="Belirtiler" 
+Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12" Margin="0,0,0,12"/>
+
+                                <TextBox x:Name="txttedavi" kısıtlamalar:InputKisitlayici.SadeceMetin="True" materialDesign:HintAssist.Hint="Tedavi" 
+Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12" Margin="0,0,0,12"/>
+
+
+
+                                <Grid Margin="0,0,0,20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <RadioButton x:Name="rbEvet" Grid.Column="0" Content="Buşlaşıcı" IsChecked="True" Foreground="#16A34A" FontWeight="Bold"/>
+                                    <RadioButton x:Name="rbhayır" Grid.Column="1" Content="Buşlaşıcı Değil" Foreground="#DC2626" FontWeight="Bold"/>
+                                </Grid>
+
+                                <Button Click="btnHastalikEkle_Click" Height="45" Background="#16A34A" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="15" Margin="0,15,0,10">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="AlertOctagon" Width="24" Height="24" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Hastalık Tanımla" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+
+
+
+
+
+
+
+
+
+
+
+                        <Border Background="#F0FDF4" CornerRadius="15" Padding="15" Margin="0,0,0,15" BorderBrush="#DCFCE7" BorderThickness="1">
+                            <StackPanel>
+                                <TextBlock Text="Aşı Programı" FontWeight="Bold" Foreground="#16A34A" Margin="0,0,0,12"/>
+
+                                <TextBox x:Name="txtAsiAdi" kısıtlamalar:InputKisitlayici.SadeceMetin="True" materialDesign:HintAssist.Hint="Aşı Adı" 
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12" Margin="0,0,0,12"/>
+
+                                <Grid Margin="0,0,0,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <DatePicker x:Name="dtAsiYapilma" Grid.Column="0" materialDesign:HintAssist.Hint="Yapılma Tarihi" 
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+                                   
+                                    <DatePicker x:Name="dtAsiTekrar" Grid.Column="2" materialDesign:HintAssist.Hint="Tekrar Tarihi" 
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+                                </Grid>
+
+                                <ComboBox x:Name="cbAsiDurum" materialDesign:HintAssist.Hint="Aşı Durumu" 
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12">
+                                    <ComboBoxItem Content="Bekliyor"/>
+                                    <ComboBoxItem Content="Yapıldı"/>
+                                    <ComboBoxItem Content="İptal"/>
+                                </ComboBox>
+                                <TextBox x:Name="txtAciklama" kısıtlamalar:InputKisitlayici.SadeceMetin="True" materialDesign:HintAssist.Hint="Açıklama" 
+   Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12" Margin="0,5,0,0"/>
+
+
+
+                                <Button  Click="btnAsı_Click" Height="45" Background="SteelBlue" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="15" Margin="0,15,0,10">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="ContentSaveCheck" Width="24" Height="24" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Aşı Ekle" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+
+                       
+                        <Border Background="#FFF1F2" CornerRadius="15" Padding="15" Margin="0,0,0,25" BorderBrush="#FFE4E6" BorderThickness="1">
+                            <StackPanel>
+                                <TextBlock Text="Gebelik ve Tohumlama Takibi" FontWeight="Bold" Foreground="#E11D48" Margin="0,0,0,12"/>
+
+                                <Grid Margin="0,0,0,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                            
+
+                                    <DatePicker x:Name="dtTohumlama" Grid.Column="0" materialDesign:HintAssist.Hint="Tohumlama Tarihi" 
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+                                    
+                                    <DatePicker x:Name="dtTahminiDogum" Grid.Column="2" materialDesign:HintAssist.Hint="Tahmini Doğum" 
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+                                </Grid>
+
+                                <ComboBox x:Name="cbGebelikDurum" materialDesign:HintAssist.Hint="Gebelik Durumu" Margin="0,0,0,12"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12">
+                                    <ComboBoxItem Content="Pozitif"/>
+                                    <ComboBoxItem Content="Negatif"/>
+                                    <ComboBoxItem Content="Beklemede"/>
+                                </ComboBox>
+
+                                <TextBox x:Name="txtGebelikNotu" kısıtlamalar:InputKisitlayici.SadeceMetin="True" materialDesign:HintAssist.Hint="Veteriner Gebelik Notu" 
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+
+ 
+                                <DatePicker x:Name="dtKontrolTarihi" Grid.Column="2" materialDesign:HintAssist.Hint="Kontrol Tarihi"  Margin="0,5,0,0"
+Style="{StaticResource MaterialDesignOutlinedDatePicker}" materialDesign:TextFieldAssist.TextFieldCornerRadius="12"/>
+
+
+
+
+                                <Button  Grid.Column="1" Click="btnGebelik_Click" 
+                                         Content="Gebelik Ekle"  Margin="5,10,0,0" 
+                                         Height="45" 
+                                         Style="{StaticResource MaterialDesignOutlinedButton}" 
+                                         materialDesign:ButtonAssist.CornerRadius="12" BorderBrush="#DC2626" Foreground="#DC2626"/>
+
+
+                            </StackPanel>
+                        </Border>
+
+                    
+
+                       <Button  Grid.Column="1" Click="btnTemizle_Click" Content="TEMİZLE" 
+                        Margin="5,0,0,0" Height="48" Style="{StaticResource MaterialDesignOutlinedButton}" materialDesign:ButtonAssist.CornerRadius="12" BorderBrush="#DC2626" Foreground="#DC2626"/>
+                        
+                    </StackPanel>
+            
+            </Border>
+         
+        </Grid>
+     
+    </Grid>
+    </ScrollViewer>
+</UserControl>

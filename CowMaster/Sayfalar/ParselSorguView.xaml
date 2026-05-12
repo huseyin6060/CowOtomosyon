@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="CowMaster.Sayfalar.ParselSorguView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1100"
+             Background="Transparent">
+
+    <Grid x:Name="AnaIzgara">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" 
+                Background="White" 
+                CornerRadius="15" 
+                BorderBrush="#DFE4EA" 
+                BorderThickness="1"
+                ClipToBounds="True">
+            <Grid x:Name="HaritaKapsayici">
+                <wv2:WebView2 x:Name="webViewHarita" 
+                              Source="https://parselsorgu.tkgm.gov.tr/"/>
+
+              
+                <Border x:Name="BdrYukleniyor" Background="White" Visibility="Collapsed">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" Value="0" IsIndeterminate="True" Foreground="#1A237E"/>
+                        <TextBlock Text="Harita Hazırlanıyor..." Margin="0,15,0,0" FontWeight="Bold" Foreground="#1A237E"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+      
+        <Border Grid.Row="1" Margin="0,10,0,0" Background="#E8EAF6" CornerRadius="8" Padding="12,8">
+            <StackPanel Orientation="Horizontal">
+                <md:PackIcon Kind="Information" Foreground="#1A237E" VerticalAlignment="Center"/>
+                <TextBlock x:Name="TxtSonucMesaji"  Text="Parsel seçildiğinde alan bilgisi 'Arazi Kayıt' paneline otomatik olarak aktarılır. Lütfen parsel sorgu ekranındaki 'i' (bilgi) butonuna basıp arazinizi seçiniz. Seçim kırmızı olduktan sonra, öznitelik bilgilerini panele yansıtmak için araziye bir kez daha tıklayınız." 
+           Foreground="#1A237E"   FontSize="12"     Margin="10,0,0,0" VerticalAlignment="Center"  FontStyle="Italic"  TextWrapping="Wrap"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

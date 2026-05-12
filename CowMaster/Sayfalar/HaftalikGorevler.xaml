@@ -1,0 +1,267 @@
+﻿<UserControl x:Class="CowMaster.Sayfalar.HaftalikGorevler"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:kısıtlamalar="clr-namespace:CowMaster.kısıtlamalar"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" d:DesignHeight="750" d:DesignWidth="1100">
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="380"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Background="White" Margin="20,20,20,10" CornerRadius="20" Padding="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" ShadowDepth="2" Opacity="0.05"/>
+            </Border.Effect>
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="#E8F5E9" CornerRadius="12" Padding="10">
+                        <materialDesign:PackIcon Kind="NotebookEdit" Foreground="#12C043" Width="30" Height="30" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Margin="15,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="Haftalık Görev Yönetimi" FontSize="24" FontWeight="ExtraBold" Foreground="#2C3E50"/>
+                        <TextBlock Text="Çiftlik iş akışını buradan organize edin" FontSize="12" Foreground="#94A3B8"/>
+                    </StackPanel>
+                </StackPanel>
+
+
+                <StackPanel HorizontalAlignment="Right">
+
+                    <Border Background="#22FFFFFF"
+                  Padding="15,8" Margin="200,5,0,0"
+                  CornerRadius="12">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <materialDesign:PackIcon Kind="Database"
+                                           Width="18"
+                                           Height="18"
+                                           Foreground="#4ADE80"
+                                           Margin="0,0,8,0"/>
+
+                            <TextBlock  x:Name="Aktif_Kullanıcı"  Text="Aktif Kullanıcı"
+                             Foreground="Black"
+                             FontWeight="SemiBold"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </StackPanel>
+            </Grid>
+        </Border>
+
+       <materialDesign:Card Grid.Row="1" Grid.Column="0" materialDesign:ElevationAssist.Elevation="Dp3" UniformCornerRadius="25" Margin="20,10,10,20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+               <Border Grid.Row="0" Background="SlateGray" CornerRadius="25,25,0,0" Padding="15">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="FormatListBulleted" Foreground="#1A237E" VerticalAlignment="Center" Width="24" Height="24" Margin="5,0,10,0"/>
+                            <TextBlock Text="Aktif Görev Listesi" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" Foreground="Black" Margin="10,0,20,0"/>
+
+                            <TextBox x:Name="txtGorevAra" Width="250" 
+                             materialDesign:HintAssist.Hint="Görev Ara..." 
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                             materialDesign:TextFieldAssist.TextFieldCornerRadius="15" 
+                             Background="White" 
+                             materialDesign:TextFieldAssist.HasClearButton="True"
+                             Height="40" Padding="10,5"
+                             TextChanged="txtAktifgorevAra_TextChanged"/>
+                        </StackPanel>
+
+                        <Button  Grid.Column="1"  Margin="0,0,20,0"
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                        Width="50" Height="40"
+                        ToolTip="Listeyi Yenile"  Click="Btnyenile_Click">
+                            <materialDesign:PackIcon Kind="Autorenew" Width="22" Height="22"/>
+                        </Button>
+                    </Grid>
+                </Border>
+
+
+                <DataGrid x:Name="dgGorevler" 
+          Grid.Row="1" 
+          Margin="10,5,10,10" 
+          AutoGenerateColumns="False" 
+          CanUserAddRows="False" 
+          IsReadOnly="True" 
+          Background="Transparent" 
+          BorderThickness="0" 
+          GridLinesVisibility="None" 
+          RowHeight="55"
+          SelectionMode="Single"
+          SelectionUnit="FullRow"  
+                          
+                           ScrollViewer.CanContentScroll="False"
+
+ ScrollViewer.VerticalScrollBarVisibility="Visible"
+                          
+                          
+          Style="{StaticResource MaterialDesignDataGrid}"
+          SelectionChanged="dgGorevler_SelectionChanged_1">
+
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter Property="FontWeight" Value="ExtraBold"/>
+                            <Setter Property="Foreground" Value="#263238"/>
+                            <Setter Property="Padding" Value="10,12"/>
+                            <Setter Property="Background" Value="#F8FAFC"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.Columns>
+                      
+                    
+
+                        <DataGridTextColumn Header="GÖREV TANIMI" Binding="{Binding gorev_tanimi}" Width="2*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="Margin" Value="10,0,0,0"/>
+                                    <Setter Property="FontWeight" Value="Medium"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                 
+                        <DataGridTextColumn Header="KATEGORİ" Binding="{Binding kategori}" Width="1.2*"/>
+
+                        
+                        <DataGridTextColumn Header="SON TARİH" Binding="{Binding son_tarih, StringFormat=d}" Width="110"/>
+
+                        <DataGridTemplateColumn Header="ÖNCELİK" Width="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border x:Name="prioBorder" CornerRadius="10" Padding="8,3" HorizontalAlignment="Left" Margin="5,0,0,0">
+                                        <TextBlock x:Name="prioText" Text="{Binding oncelik_durumu}" Foreground="White" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    </Border>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding oncelik_durumu}" Value="Acil">
+                                            <Setter TargetName="prioBorder" Property="Background" Value="#D32F2F"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding oncelik_durumu}" Value="Yüksek">
+                                            <Setter TargetName="prioBorder" Property="Background" Value="#FF9800"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding oncelik_durumu}" Value="Orta">
+                                            <Setter TargetName="prioBorder" Property="Background" Value="#1976D2"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding oncelik_durumu}" Value="Düşük">
+                                            <Setter TargetName="prioBorder" Property="Background" Value="#78909C"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding oncelik_durumu}" Value="Yapıldı">
+                                            <Setter TargetName="prioBorder" Property="Background" Value="Green"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </materialDesign:Card>
+
+        <Border Grid.Row="1" Grid.Column="1" Background="White" Margin="10,10,20,20" CornerRadius="25" Padding="25">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="5" Opacity="0.05" Color="#333"/>
+            </Border.Effect>
+           
+                <StackPanel>
+                    <TextBlock Text="GÖREV DETAYLARI" FontSize="15" FontWeight="ExtraBold" Foreground="#12C043" Margin="5,0,0,25"/>
+
+                <TextBox x:Name="txtGorevAd"  kısıtlamalar:InputKisitlayici.SadeceMetin="True"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:HintAssist.Hint="Görev Tanımı" 
+                             materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
+                             Margin="0,0,0,20" Height="55" FontSize="14" VerticalContentAlignment="Center"/>
+
+                    <ComboBox x:Name="cbKategori" 
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                              materialDesign:HintAssist.Hint="Kategori Seçin" 
+                              materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
+                              Height="55" Margin="0,0,0,20">
+                        <ComboBoxItem Content="Besleme"/>
+                        <ComboBoxItem Content="Temizlik"/>
+                        <ComboBoxItem Content="Sağlık Kontrolü"/>
+                        <ComboBoxItem Content="Tarla İşleri"/>
+                    </ComboBox>
+
+                    <ComboBox x:Name="cbOncelik" 
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                              materialDesign:HintAssist.Hint="Öncelik Durumu" 
+                              materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
+                              Height="55" Margin="0,0,0,20">
+                        <ComboBoxItem Content="Düşük"/>
+                        <ComboBoxItem Content="Orta"/>
+                        <ComboBoxItem Content="Yüksek"/>
+                        <ComboBoxItem Content="Acil"/>
+                        <ComboBoxItem Content="Yapıldı"/>
+                    </ComboBox>
+
+                    <DatePicker x:Name="dpTarih" 
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                materialDesign:HintAssist.Hint="Son Tamamlama Tarihi" 
+                                materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
+                                Margin="0,0,0,30" Height="55" VerticalContentAlignment="Center"/>
+
+                    <Button  Click="BtnEkle_Click"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                            Background="#12C043" BorderBrush="Transparent" Height="50" Margin="0,0,0,12"
+                            materialDesign:ButtonAssist.CornerRadius="15">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="PlusCircle" Margin="0,0,10,0" VerticalAlignment="Center" Width="20" Height="20"/>
+                            <TextBlock Text="YENİ GÖREV EKLE" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button  Click="BtnGuncelle_Click"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                            Background="#1976D2" BorderBrush="Transparent" Height="50" Margin="0,0,0,15"
+                            materialDesign:ButtonAssist.CornerRadius="15">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Update" Margin="0,0,10,0" VerticalAlignment="Center" Width="20" Height="20"/>
+                            <TextBlock Text="GÜNCELLE" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Separator Margin="0,10,0,20" Background="#F1F5F9"/>
+
+                    <Button  Click="BtnSil_Click"
+                            Style="{StaticResource MaterialDesignOutlinedButton}" 
+                            Foreground="#D32F2F" BorderBrush="#FFEBEE" Background="#FFEBEE" Height="50"
+                            materialDesign:ButtonAssist.CornerRadius="15">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="DeleteOutline" Margin="0,0,10,0" VerticalAlignment="Center" Width="20" Height="20"/>
+                            <TextBlock Text="SEÇİLİ GÖREVİ KALDIR" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Border Margin="0,25,0,0" Background="#F0F9FF" CornerRadius="15" Padding="15">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="LightbulbOutline" Foreground="#0288D1" Margin="0,0,10,0"/>
+                            <TextBlock Text="İpucu: Görevleri tamamladıkça listeden onay kutusunu işaretleyin." 
+                                       FontSize="11" Foreground="#0288D1" TextWrapping="Wrap" Width="240"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+       
+        </Border>
+    </Grid>
+</UserControl>

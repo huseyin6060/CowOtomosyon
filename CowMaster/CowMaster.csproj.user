@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="Sayfalar\AracBakim.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\Ayarlar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\GelirGider.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\HaftalikGorevler.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\Hayvanlarım.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\HayvanSatis.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\MusterilerPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\ParselSorguView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\PersonellerPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\Rasyon.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\SonDurumlar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\Surubilgi .xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\SütBilgisi.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\Tarla.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\VeterinerBilgi.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sayfalar\VeterinerEkle.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

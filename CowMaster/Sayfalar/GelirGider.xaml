@@ -1,0 +1,306 @@
+﻿<UserControl x:Class="CowMaster.Sayfalar.GelirGider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:kısıtlamalar="clr-namespace:CowMaster.kısıtlamalar"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1200">
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Margin="20,20,10,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+
+                <RowDefinition Height="Auto"/>
+
+                <RowDefinition Height="1.2*"/>
+
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+
+            <Border Grid.Row="0" Background="#1E293B" CornerRadius="20" Padding="20,15" Margin="0,0,0,15">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="CashMultiple" Width="30" Height="30" Foreground="#FACC15" VerticalAlignment="Center"/>
+                    <StackPanel Margin="15,0,0,0">
+                        <TextBlock Text="Finansal Yönetim Paneli" FontSize="22" FontWeight="ExtraBold" Foreground="White"/>
+                        <TextBlock Text="Gelir, gider ve nakit akış takibi" FontSize="11" Foreground="#94A3B8"/>
+                    </StackPanel>
+
+
+                    <StackPanel HorizontalAlignment="Right">
+
+                        <Border Background="#22FFFFFF"
+                  Padding="15,8" Margin="250,5,0,0"
+                  CornerRadius="12">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <materialDesign:PackIcon Kind="Database"
+                                           Width="18"
+                                           Height="18"
+                                           Foreground="#4ADE80"
+                                           Margin="0,0,8,0"/>
+
+                                <TextBlock  x:Name="Aktif_Kullanıcı"  Text="Aktif Kullanıcı"
+                             Foreground="Black"
+                             FontWeight="SemiBold"/>
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+
+
+            <UniformGrid Grid.Row="1" Columns="3" Margin="0,0,0,15">
+                <materialDesign:Card Margin="0,0,10,0" Background="White" UniformCornerRadius="20" Padding="15">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <materialDesign:PackIcon Kind="ArrowUpCircleOutline" Foreground="#16A34A" Width="18" Height="18" VerticalAlignment="Center"/>
+                            <TextBlock Text=" Toplam Gelir" Foreground="#64748B" FontSize="12" FontWeight="Medium" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding ToplamGelir, StringFormat='{}{0:C0}'}" FontSize="24" FontWeight="Bold" Foreground="#1E293B" Margin="0,5"/>
+                        <ProgressBar Value="100" Height="4" Foreground="#16A34A" Background="#DCFCE7" />
+                    </StackPanel>
+                </materialDesign:Card>
+
+               <materialDesign:Card Margin="5,0,5,0" Background="White" UniformCornerRadius="20" Padding="15">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <materialDesign:PackIcon Kind="ArrowDownCircleOutline" Foreground="#DC2626" Width="18" Height="18" VerticalAlignment="Center"/>
+                            <TextBlock Text=" Toplam Gider" Foreground="#64748B" FontSize="12" FontWeight="Medium" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding ToplamGider, StringFormat='{}{0:C0}'}" FontSize="24" FontWeight="Bold" Foreground="#1E293B" Margin="0,5"/>
+                        <ProgressBar Value="60" Height="4" Foreground="#DC2626" Background="#FEE2E2"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <materialDesign:Card Margin="10,0,0,0" Background="White" UniformCornerRadius="20" Padding="15">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <materialDesign:PackIcon Kind="Finance" Foreground="#2563EB" Width="18" Height="18" VerticalAlignment="Center"/>
+                            <TextBlock Text=" Net Kâr" Foreground="#64748B" FontSize="12" FontWeight="Medium" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding NetKar, StringFormat='{}{0:C0}'}" FontSize="24" FontWeight="Bold" Foreground="#2563EB" Margin="0,5"/>
+                        <materialDesign:PackIcon Kind="TrendingUp" HorizontalAlignment="Right" Foreground="#2563EB" Opacity="0.5" Width="20" Height="20"/>
+                    </StackPanel>
+                </materialDesign:Card>
+            </UniformGrid>
+
+            <materialDesign:Card Grid.Row="2" Margin="0,0,0,15" UniformCornerRadius="20" Padding="20">
+                <Grid>
+                    <TextBlock Text="Aylık Finansal Analiz" FontWeight="Bold" Foreground="#1E293B" FontSize="14"/>
+                    <lvc:CartesianChart Series="{Binding FinansSerisi}" LegendLocation="Bottom" Margin="0,30,0,0">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Labels="{Binding Gunler}"/>
+                        </lvc:CartesianChart.AxisX>
+                    </lvc:CartesianChart>
+                </Grid>
+            </materialDesign:Card>
+
+
+           <materialDesign:Card Grid.Row="3" materialDesign:ElevationAssist.Elevation="Dp3" UniformCornerRadius="25" Margin="0,5,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    
+                    <Border Grid.Row="0" Background="SlateGray" CornerRadius="25,25,0,0" Padding="15">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="History" Foreground="#1A237E" VerticalAlignment="Center" Width="24" Height="24" Margin="0,0,10,0"/>
+                                <TextBlock Text="Son İşlemler" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" Foreground="Black" Margin="0,0,20,0"/>
+
+                                <TextBox x:Name="txtIslemAra" Width="250" 
+                             materialDesign:HintAssist.Hint="İşlem Ara..." 
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                             materialDesign:TextFieldAssist.TextFieldCornerRadius="15" 
+                             Background="White" 
+                             materialDesign:TextFieldAssist.HasClearButton="True"
+                             VerticalContentAlignment="Center"
+                             Padding="12,8,12,8"
+                                         TextChanged="txtgelirgiderAra_TextChanged"/>
+                            </StackPanel>
+
+
+                            <Button  Click="btnFinansYenile" Grid.Column="1" 
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                        ToolTip="Listeyi Yenile">
+                                <materialDesign:PackIcon Kind="Autorenew" Width="24" Height="24"/>
+                            </Button>
+                        </Grid>
+                    </Border>
+
+                   
+                    <DataGrid x:Name="dgFinans" 
+                  Grid.Row="1" 
+                  Margin="10" 
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False" 
+                  IsReadOnly="True" 
+                  Background="Transparent" 
+                  BorderThickness="0" 
+                  GridLinesVisibility="None" 
+                  RowHeight="50"
+                  SelectionUnit="FullRow" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                  SelectionChanged="dgFinans_SelectionChanged">
+                        
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="TARİH" Binding="{Binding Tarih, StringFormat=d}" Width="110"/>
+                            <DataGridTextColumn Header="AÇIKLAMA" Binding="{Binding Aciklama}" Width="*"/>
+                            <DataGridTextColumn Header="KATEGORİ" Binding="{Binding Kategori}" Width="130">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="#64748B"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                      
+                            <DataGridTemplateColumn Header="MİKTAR" Width="120">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Miktar, StringFormat='₺{0:N2}'}" 
+                                       FontWeight="Black" 
+                                       FontSize="14"
+                                       Foreground="{Binding Renk}" 
+                                       VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                       
+                            <DataGridTemplateColumn Width="70">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Style="{StaticResource MaterialDesignIconButton}" 
+                                    Click="BtnSil_Click" 
+                                    Foreground="#EF4444" 
+                                    Width="30" Height="30">
+                                            <materialDesign:PackIcon Kind="DeleteOutline" Width="20"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+
+        <Border Grid.Column="1" Background="White" CornerRadius="20" Padding="25" Margin="10,20,20,20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" ShadowDepth="2" Opacity="0.05"/>
+            </Border.Effect>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock x:Name="lblPanelBaslik" Text="Yeni Finansal İşlem Kaydı" FontSize="20" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,25"/>
+
+                 
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton x:Name="rbGelir" Grid.Column="0" Content="Gelir (+)" IsChecked="True" Foreground="#16A34A" FontWeight="Bold"/>
+                        <RadioButton x:Name="rbGider" Grid.Column="1" Content="Gider (-)" Foreground="#DC2626" FontWeight="Bold"/>
+                    </Grid>
+
+                   <ComboBox x:Name="cbKategori" materialDesign:HintAssist.Hint="İşlem Kategorisi" Margin="0,0,0,15"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      Height="50" VerticalContentAlignment="Center"
+                      materialDesign:TextFieldAssist.TextFieldCornerRadius="15" FontSize="14">
+                        <ComboBoxItem Content="Süt Satışı"/>
+                        <ComboBoxItem Content="Hayvan Satışı"/>
+                        <ComboBoxItem Content="Yem Alımı"/>
+                        <ComboBoxItem Content="Veteriner Hizmetleri"/>
+                        <ComboBoxItem Content="Elektrik/Su/Genel Gider"/>
+                        <ComboBoxItem Content="Personel Maaş"/>
+                    </ComboBox>
+
+                    <ComboBox x:Name="cbOdemeTuru" materialDesign:HintAssist.Hint="Ödeme Yöntemi" Margin="0,0,0,15"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      Height="50" VerticalContentAlignment="Center"
+                      materialDesign:TextFieldAssist.TextFieldCornerRadius="15" FontSize="14">
+                        <ComboBoxItem Content="Nakit"/>
+                        <ComboBoxItem Content="Havale"/>
+                        <ComboBoxItem Content="Kredi Kartı"/>
+                        <ComboBoxItem Content="Çek"/>
+                    </ComboBox>
+
+                   <DatePicker x:Name="dpTarih" materialDesign:HintAssist.Hint="İşlem Tarihi Seçin" Margin="0,0,0,15"
+                        Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                        Height="50" VerticalContentAlignment="Center"
+                        materialDesign:TextFieldAssist.TextFieldCornerRadius="15" FontSize="14"/>
+
+                    <Grid Margin="0,0,0,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="cbMusteri" Grid.Column="0" materialDesign:HintAssist.Hint="İlgili Müşteri" 
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          Height="50" VerticalContentAlignment="Center"
+                          materialDesign:TextFieldAssist.TextFieldCornerRadius="15" FontSize="13"/>
+                        <ComboBox x:Name="cbPersonel" Grid.Column="2" materialDesign:HintAssist.Hint="İşlem Personeli" 
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          Height="50" VerticalContentAlignment="Center"
+                          materialDesign:TextFieldAssist.TextFieldCornerRadius="15" FontSize="13"/>
+                    </Grid>
+
+                    <TextBox x:Name="txtTutar" materialDesign:HintAssist.Hint="İşlem Tutarı (₺)" Margin="0,0,0,25"  kısıtlamalar:InputKisitlayici.SadeceSayi="True"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     materialDesign:TextFieldAssist.PrefixText="₺ "
+                     Height="50" VerticalContentAlignment="Center"
+                     materialDesign:TextFieldAssist.TextFieldCornerRadius="15" FontSize="12" FontWeight="Bold"/>
+
+                   <Button Click="BtnKaydet_Click" Content="İŞLEMİ SİSTEME KAYDET" 
+                    Background="#16A34A" BorderBrush="Transparent" Height="50" Margin="0,0,0,10" 
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ButtonAssist.CornerRadius="25" FontWeight="Bold"/>
+
+                    <Button  Click="BtnGuncelle_Click" Content="KAYDI GÜNCELLE" 
+                    Background="#F59E0B" BorderBrush="Transparent" Height="50" Margin="0,0,0,10" 
+                    Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ButtonAssist.CornerRadius="25" FontWeight="Bold"/>
+
+                    <Button  Click="BtnTemizle_Click" Content="FORMAYI SIFIRLA" 
+                    Background="LightGray" BorderBrush="#E2E8F0" Foreground="#64748B" Height="50" Margin="0,0,0,10" 
+                    Style="{StaticResource MaterialDesignOutlinedButton}" materialDesign:ButtonAssist.CornerRadius="25"/>
+
+                    <Border Background="#F1F5F9" CornerRadius="15" Padding="15" Margin="0,15,0,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <materialDesign:PackIcon Kind="ShieldCheck" Foreground="#2563EB" Width="18" Height="18"/>
+                                <TextBlock Text="SQL Veri Doğrulama" FontWeight="Bold" Foreground="#2563EB" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            <TextBlock Text="Bu form doğrudan 'Tbl_Finans' tablosuna kayıt atmak üzere optimize edilmiştir." 
+                               TextWrapping="Wrap" FontSize="11" Foreground="#475569"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

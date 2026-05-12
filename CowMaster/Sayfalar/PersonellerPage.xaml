@@ -1,0 +1,600 @@
+﻿<UserControl x:Class="CowMaster.Sayfalar.PersonellerPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:kısıtlamalar="clr-namespace:CowMaster.kısıtlamalar"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="950"
+             d:DesignWidth="1400">
+
+    <Grid >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="420"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+      
+        <Border Grid.ColumnSpan="2"
+                Background="#0F172A"
+                CornerRadius="20"
+                Margin="15"
+                Padding="25">
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20"
+                                  ShadowDepth="3"
+                                  Opacity="0.25"/>
+            </Border.Effect>
+
+            <Grid>
+
+                <StackPanel Orientation="Horizontal">
+
+                    <Border Width="70"
+                            Height="70"
+                            Background="#1E293B"
+                            CornerRadius="18">
+
+                        <materialDesign:PackIcon Kind="AccountHardHat"
+                                                 Width="38"
+                                                 Height="38"
+                                                 Foreground="#38BDF8"
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center"/>
+                    </Border>
+
+                    <StackPanel Margin="18,0,0,0">
+
+                        <TextBlock Text="PERSONEL YÖNETİM PANELİ"
+                                   FontSize="30"
+                                   FontWeight="Black"
+                                   Foreground="White"/>
+
+                        <TextBlock Text="Çiftlik çalışanları • Maaş • Görev • Aktiflik Takibi"
+                                   Foreground="#CBD5E1"
+                                   FontSize="14"
+                                   Margin="0,5,0,0"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Right">
+
+                    <Border Background="#22FFFFFF"
+                            Padding="15,8"
+                            CornerRadius="12">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <materialDesign:PackIcon Kind="Database"
+                                                     Width="18"
+                                                     Height="18"
+                                                     Foreground="#4ADE80"
+                                                     Margin="0,0,8,0"/>
+
+                            <TextBlock  x:Name="Aktif_Kullanıcı"  Text="Aktif Kullanıcı"
+                                       Foreground="White"
+                                       FontWeight="SemiBold"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </StackPanel>
+
+            </Grid>
+
+        </Border>
+
+    
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Margin="15,0,10,15">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+         
+            <UniformGrid Rows="1"
+             Columns="4"
+             Margin="0,0,0,5">
+
+        
+                <Border Background="White"
+            CornerRadius="18"
+            Margin="6"
+            Padding="18"
+            Height="120">
+
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="12"
+                              ShadowDepth="2"
+                              Opacity="0.15"/>
+                    </Border.Effect>
+
+                    <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+                        <materialDesign:PackIcon Kind="AccountGroup"
+                                     Width="34"
+                                     Height="34"
+                                     Foreground="#2563EB"
+                                     HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="Toplam Personel"
+                       Margin="0,10,0,0"
+                       FontSize="13"
+                       Foreground="#64748B"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"/>
+
+                        <TextBlock x:Name="txtToplamPersonel"
+                       Text="0"
+                       FontSize="28"
+                       FontWeight="Black"
+                       Foreground="#0F172A"
+                       HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Border>
+
+               
+                <Border Background="White"
+            CornerRadius="18"
+            Margin="6"
+            Padding="18"
+            Height="120">
+
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="12"
+                              ShadowDepth="2"
+                              Opacity="0.15"/>
+                    </Border.Effect>
+
+                    <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+                        <materialDesign:PackIcon Kind="Cash"
+                                     Width="34"
+                                     Height="34"
+                                     Foreground="#16A34A"
+                                     HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="Toplam Maaş"
+                       Margin="0,10,0,0"
+                       FontSize="13"
+                       Foreground="#64748B"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"/>
+
+                        <TextBlock x:Name="txtToplamMaas"
+                       Text="0 ₺"
+                       FontSize="28"
+                       FontWeight="Black"
+                       Foreground="#0F172A"
+                       HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Border>
+
+          
+                <Border Background="White"
+            CornerRadius="18"
+            Margin="6"
+            Padding="18"
+            Height="120">
+
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="12"
+                              ShadowDepth="2"
+                              Opacity="0.15"/>
+                    </Border.Effect>
+
+                    <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+                        <materialDesign:PackIcon Kind="BadgeAccount"
+                                     Width="34"
+                                     Height="34"
+                                     Foreground="#D97706"
+                                     HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="Aktif Personel"
+                       Margin="0,10,0,0"
+                       FontSize="13"
+                       Foreground="#64748B"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"/>
+
+                        <TextBlock x:Name="txtAktifPersonel"
+                       Text="0"
+                       FontSize="28"
+                       FontWeight="Black"
+                       Foreground="#0F172A"
+                       HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Border>
+
+               
+                <Border Background="White"
+            CornerRadius="18"
+            Margin="6"
+            Padding="18"
+            Height="120">
+
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="12"
+                              ShadowDepth="2"
+                              Opacity="0.15"/>
+                    </Border.Effect>
+
+                    <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+                        <materialDesign:PackIcon Kind="Truck"
+                                     Width="34"
+                                     Height="34"
+                                     Foreground="#7C3AED"
+                                     HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="Ehliyeti Olan"
+                       Margin="0,10,0,0"
+                       FontSize="13"
+                       Foreground="#64748B"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"/>
+
+                        <TextBlock x:Name="txtEhliyetli"
+                       Text="0"
+                       FontSize="28"
+                       FontWeight="Black"
+                       Foreground="#0F172A"
+                       HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Border>
+
+            </UniformGrid>
+
+            
+            <materialDesign:Card Grid.Row="1" materialDesign:ElevationAssist.Elevation="Dp3" UniformCornerRadius="25" Margin="10,15,10,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    
+                    <Border Grid.Row="0" Background="SlateGray" CornerRadius="25,25,0,0" Padding="15">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="ClipboardAccount" Foreground="#1A237E" VerticalAlignment="Center" Width="26" Height="26" Margin="5,0,10,0"/>
+                                <TextBlock Text="Personel Listesi" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" Foreground="Black" Margin="10,0,20,0"/>
+
+                                <TextBox x:Name="txtPersonelAra" Width="250" 
+                             materialDesign:HintAssist.Hint="Personel Ara..." 
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                             materialDesign:TextFieldAssist.TextFieldCornerRadius="15" 
+                             Background="White" 
+                             materialDesign:TextFieldAssist.HasClearButton="True"
+                             Height="40" Padding="10,5"/>
+                            </StackPanel>
+
+
+                            <Button  Click="btnPersonelYenile_Click" Grid.Column="1" 
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                        Width="50" Height="40"
+                        ToolTip="Listeyi Yenile">
+                                <materialDesign:PackIcon Kind="Autorenew" Width="22" Height="22"/>
+                            </Button>
+                        </Grid>
+                    </Border>
+
+                   
+                    <DataGrid x:Name="dgPersoneller" 
+                  Grid.Row="1" 
+                  Margin="10,5,10,10" 
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False" 
+                  IsReadOnly="True" 
+                  Background="Transparent" 
+                  BorderThickness="0" 
+                  GridLinesVisibility="None" 
+                  RowHeight="55"
+                  SelectionMode="Single"     
+                  SelectionUnit="FullRow" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                  SelectionChanged="dgPersoneller_SelectionChanged">
+
+                 
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="Padding" Value="10,0,0,0"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="Foreground" Value="#64748B"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <DataGrid.Columns>
+                           
+                            <DataGridTextColumn Header="AD SOYAD" Binding="{Binding ad_soyad}" Width="1.8*" FontWeight="Bold">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="Margin" Value="10,0,0,0"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                          
+                            <DataGridTextColumn Header="TC NO" Binding="{Binding tc_no}" Width="1.2*"/>
+
+                           
+                            <DataGridTextColumn Header="TELEFON" Binding="{Binding telefon}" Width="1.3*"/>
+
+                          
+                            <DataGridTextColumn Header="GÖREV" Binding="{Binding gorev}" Width="1.4*"/>
+
+                         
+                            <DataGridTextColumn Header="MAAŞ" Binding="{Binding maas, StringFormat='₺{0:N2}'}" Width="1*">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="FontWeight" Value="SemiBold"/>
+                                        <Setter Property="Foreground" Value="#1A237E"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            
+                            <DataGridTextColumn Header="İŞE GİRİŞ" Binding="{Binding ise_giris_tarihi, StringFormat=d}" Width="1.1*"/>
+
+                         
+                            <DataGridTemplateColumn Header="DURUM" Width="90">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#DCFCE7" CornerRadius="10" Padding="8,3" HorizontalAlignment="Left" Margin="5,0,0,0">
+                                            <TextBlock Text="AKTİF" Foreground="#166534" FontSize="11" FontWeight="Bold"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                      
+                            <DataGridTemplateColumn Header="İŞLEM" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                       
+                                            <Button Style="{StaticResource MaterialDesignIconButton}"  Click="btnSil_click"
+                                        Foreground="#EF4444" Width="30" Height="30">
+                                                <materialDesign:PackIcon Kind="DeleteOutline" Width="18"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </materialDesign:Card>
+
+        </Grid>
+
+      
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,0,15,15"
+                Background="White"
+                CornerRadius="20"
+                Padding="25">
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="18"
+                                  ShadowDepth="2"
+                                  Opacity="0.18"/>
+            </Border.Effect>
+
+            <ScrollViewer VerticalScrollBarVisibility="Hidden"
+              HorizontalScrollBarVisibility="Disabled">
+
+                <StackPanel>
+
+                    <TextBlock Text="Personel Kayıt İşlemleri"
+                               FontSize="25"
+                               FontWeight="Black"
+                               Foreground="#0F172A"/>
+
+                    <TextBlock Text="Yeni personel ekleme ve düzenleme ekranı"
+                               FontSize="13"
+                               Foreground="#64748B"
+                               Margin="0,5,0,25"/>
+
+
+                    <TextBox x:Name="txtAdSoyad" kısıtlamalar:InputKisitlayici.SadeceMetin="True"
+                             Height="50"
+                             Margin="0,0,0,15"
+                             Padding="10"
+                             Foreground="#111827"
+                             materialDesign:HintAssist.Hint="Ad Soyad"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+
+                    <TextBox x:Name="txtTcNo" MaxLength="11" kısıtlamalar:InputKisitlayici.SadeceSayi="True"
+                             Height="50"
+                             Margin="0,0,0,15"
+                             Padding="10"
+                             Foreground="#111827"
+                             materialDesign:HintAssist.Hint="TC Kimlik No"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+
+                    <TextBox x:Name="txtTelefon" MaxLength="11" kısıtlamalar:InputKisitlayici.SadeceSayi="True"
+                             Height="50"
+                             Margin="0,0,0,15"
+                             Padding="10"
+                             Foreground="#111827"
+                             materialDesign:HintAssist.Hint="Telefon"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+                 
+                    <ComboBox x:Name="cbGorev"
+                              Height="50"
+                              Margin="0,0,0,15"
+                              materialDesign:HintAssist.Hint="Görev"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}">
+
+                        <ComboBoxItem Content="Çiftlik İşçisi"/>
+                        <ComboBoxItem Content="Sağım Personeli"/>
+                        <ComboBoxItem Content="Veteriner Yardımcı"/>
+                        <ComboBoxItem Content="Şoför"/>
+                        <ComboBoxItem Content="Traktör Operatörü"/>
+                        <ComboBoxItem Content="Yönetici"/>
+
+                    </ComboBox>
+
+
+                    <TextBox x:Name="txtMaas" kısıtlamalar:InputKisitlayici.SadeceSayi="True"
+                             Height="50"
+                             Margin="0,0,0,15"
+                             Padding="10"
+                             Foreground="#111827"
+                             materialDesign:HintAssist.Hint="Maaş"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+               
+                    <DatePicker x:Name="dtIseGiris"
+            Height="50"
+            Margin="0,0,0,15"
+            Padding="10"
+            materialDesign:HintAssist.Hint="İşe Giriş Tarihi"
+            materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+            Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+
+                
+                    <DatePicker x:Name="dtDogum"
+            Height="50"
+            Margin="0,0,0,15"
+            Padding="10"
+            materialDesign:HintAssist.Hint="Doğum Tarihi"
+            materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+            Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+
+                
+                    <TextBox x:Name="txtAdres"
+                             Height="90"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             Margin="0,0,0,15"
+                             Padding="10"
+                             Foreground="#111827"
+                             materialDesign:HintAssist.Hint="Adres"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+               
+                    <CheckBox x:Name="chkEhliyet"
+                              Content="Ehliyeti Var"
+                              FontWeight="SemiBold"
+                              Margin="0,0,0,10"/>
+
+                    <CheckBox x:Name="chkAktif"
+                              Content="Aktif Personel"
+                              IsChecked="True"
+                              FontWeight="SemiBold"
+                              Margin="0,0,0,20"/>
+
+
+                    <TextBox x:Name="txtAciklama" kısıtlamalar:InputKisitlayici.SadeceMetin="True"
+                             Height="100"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             Margin="0,0,0,20"
+                             Padding="10"
+                             Foreground="#111827"
+                             materialDesign:HintAssist.Hint="Açıklama"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+
+                    <Button  Click="BtnKaydet_Click"
+                            Height="55"
+                            Background="#16A34A"
+                            Foreground="White"
+                            BorderThickness="0"
+                            FontWeight="Bold"
+                            FontSize="15"
+                            Margin="0,0,0,10">
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+
+                            <materialDesign:PackIcon Kind="ContentSave"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,10,0"/>
+
+                            <TextBlock Text="PERSONELİ KAYDET"/>
+
+                        </StackPanel>
+
+                    </Button>
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Click="btnGuncelle_Click"
+                                Height="48"
+                                Margin="0,0,5,0"
+                                Background="#2563EB"
+                                Foreground="White"
+                                BorderThickness="0"
+                                FontWeight="Bold"
+                                Content="GÜNCELLE"/>
+
+                        <Button Grid.Column="1"   Click="btnTemizle_Click"
+                                Height="48"
+                                Margin="5,0,0,0"
+                                Background="#DC2626"
+                                Foreground="White"
+                                BorderThickness="0"
+                                FontWeight="Bold"
+                                Content="TEMİZLE"/>
+
+                    </Grid>
+
+                </StackPanel>
+
+            </ScrollViewer>
+
+        </Border>
+
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,792 @@
+﻿<UserControl x:Class="CowMaster.Sayfalar.Rasyon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:kısıtlamalar="clr-namespace:CowMaster.kısıtlamalar"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+         
+             d:DesignHeight="1000" d:DesignWidth="1300">
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="450"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+   
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Background="#1A237E" CornerRadius="15" Padding="20" Margin="0,0,0,20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" ShadowDepth="2" Opacity="0.3"/>
+            </Border.Effect>
+            <Grid>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Warehouse" Width="36" Height="36" Foreground="White" VerticalAlignment="Center"/>
+                    <StackPanel Margin="20,0,0,0">
+                        <TextBlock Text=" Detaylı Ambar ve Rasyon Yönetimi" FontSize="26" FontWeight="ExtraBold" Foreground="White"/>
+                        <TextBlock Text="Balyalarınızı Yönetin" FontSize="12" Foreground="#B0BEC5"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Right">
+
+                    <Border Background="#22FFFFFF"
+                  Padding="15,8" Margin="200,5,0,0"
+                  CornerRadius="12">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <materialDesign:PackIcon Kind="Database"
+                                           Width="18"
+                                           Height="18"
+                                           Foreground="#4ADE80"
+                                           Margin="0,0,8,0"/>
+
+                            <TextBlock  x:Name="Aktif_Kullanıcı"  Text="Aktif Kullanıcı"
+                             Foreground="Black"
+                             FontWeight="SemiBold"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <ScrollViewer x:Name="StockScrollViewer"
+              Grid.Row="1"
+              Grid.Column="0"
+              HorizontalScrollBarVisibility="Hidden"
+              VerticalScrollBarVisibility="Disabled"
+              PanningMode="HorizontalOnly"
+              PreviewMouseWheel="StockScrollViewer_PreviewMouseWheel">
+
+            <StackPanel Orientation="Horizontal">
+              
+                <materialDesign:Card Width="185" Margin="5" Background="White" UniformCornerRadius="20" Padding="15">
+                    <StackPanel>
+                        <Grid>
+                            <materialDesign:PackIcon Kind="Corn" Foreground="#FF673AB7" Width="24" Height="24"/>
+                            <materialDesign:PackIcon Kind="Alert" Foreground="#E74C3C" Width="18" Height="18" HorizontalAlignment="Right" ToolTip="Kritik Stok!"/>
+                        </Grid>
+                        <TextBlock Text="Mısır Silajı" FontSize="13" Foreground="#64748B" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <TextBlock x:Name="txtSilajStok" Text="0 Ton" FontSize="22" FontWeight="Black" Foreground="#1E293B" Margin="0,5"/>
+                        <ProgressBar Value="85" Height="4" Foreground="#FF673AB7" Background="#F3E5F5"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+               
+                <materialDesign:Card Width="185" Margin="5" Background="White" UniformCornerRadius="20" Padding="15">
+                    <StackPanel>
+                        <Grid>
+                            <materialDesign:PackIcon Kind="Sprout" Foreground="#FF673AB7" Width="24" Height="24"/>
+                            <materialDesign:PackIcon Kind="Alert" Foreground="#E74C3C" Width="18" Height="18" HorizontalAlignment="Right" ToolTip="Kritik Stok!"/>
+                        </Grid>
+                        <TextBlock Text="Pancar Küspesi" FontSize="13" Foreground="#64748B" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <TextBlock x:Name="txtkuspeStok" Text="0 Ton" FontSize="22" FontWeight="Black" Foreground="#1E293B" Margin="0,5"/>
+                        <ProgressBar Value="0" Height="4" Foreground="#E74C3C" Background="#F3E5F5"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+              
+                <materialDesign:Card Width="185" Margin="5" Background="White" UniformCornerRadius="20" Padding="15">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Flower" Foreground="#4CAF50" Width="24" Height="24"/>
+                        <TextBlock Text="Yonca Balya" FontSize="13" Foreground="#64748B" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <TextBlock x:Name="txtYoncaStok" Text="0 Adet" FontSize="22" FontWeight="Black" Foreground="#1E293B" Margin="0,5"/>
+                        <ProgressBar Value="30" Height="4" Foreground="#4CAF50" Background="#E8F5E9"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+               
+                <materialDesign:Card Width="185" Margin="5" Background="White" UniformCornerRadius="20" Padding="15">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Grass" Foreground="#FBC02D" Width="24" Height="24"/>
+                        <TextBlock Text="Saman Balya" FontSize="13" Foreground="#64748B" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <TextBlock x:Name="txtSamanStok" Text="0 Adet" FontSize="22" FontWeight="Black" Foreground="#1E293B" Margin="0,5"/>
+                        <ProgressBar Value="30" Height="4" Foreground="#FBC02D" Background="#FFF9C4"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+             
+                <materialDesign:Card Width="185" Margin="5" Background="White" UniformCornerRadius="20" Padding="15">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Leaf" Foreground="#689F38" Width="24" Height="24"/>
+                        <TextBlock Text="Fığ Balya" FontSize="13" Foreground="#64748B" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <TextBlock x:Name="txtFıgStok" Text="0 Adet" FontSize="22" FontWeight="Black" Foreground="#1E293B" Margin="0,5"/>
+                        <ProgressBar Value="30" Height="4" Foreground="#689F38" Background="#DCEDC8"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+              
+                <materialDesign:Card Width="185" Margin="5" Background="White" UniformCornerRadius="20" Padding="15">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Wheat" Foreground="#8BC34A" Width="24" Height="24"/>
+                        <TextBlock Text="Yulaf Balya" FontSize="13" Foreground="#64748B" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <TextBlock x:Name="txtYulafStok" Text="0 Adet" FontSize="22" FontWeight="Black" Foreground="#1E293B" Margin="0,5"/>
+                        <ProgressBar Value="30" Height="4" Foreground="#8BC34A" Background="#F1F8E9"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+            
+                <materialDesign:Card Width="185" Margin="5" Background="White" UniformCornerRadius="20" Padding="15">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Barn" Foreground="#CDDC39" Width="24" Height="24"/>
+                        <TextBlock Text="Arpa Balya" FontSize="13" Foreground="#64748B" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <TextBlock x:Name="txtArpaStok" Text="0 Adet" FontSize="22" FontWeight="Black" Foreground="#1E293B" Margin="0,5"/>
+                        <ProgressBar Value="30" Height="4" Foreground="#CDDC39" Background="#F9FBE7"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <materialDesign:Card Width="185" Margin="5" Background="White" UniformCornerRadius="20" Padding="15">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Sack" Foreground="#2196F3" Width="24" Height="24"/>
+                        <TextBlock Text="Süt Yemi" FontSize="13" Foreground="#64748B" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <TextBlock x:Name="txtSutYemiStok" Text="0 KG" FontSize="22" FontWeight="Black" Foreground="#1E293B" Margin="0,5"/>
+                        <TextBlock Text="49 Çuval" FontSize="11" Foreground="#2196F3" FontWeight="Bold"/>
+                    </StackPanel>
+                </materialDesign:Card>
+            </StackPanel>
+        </ScrollViewer>
+
+
+
+
+        <Grid Grid.Row="2" Grid.Column="0" Margin="0,0,15,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+     
+
+    <!-- 1. KART: STOK DEPOSU -->
+    <materialDesign:Card Grid.Row="0" Grid.Column="0" Margin="8" UniformCornerRadius="25" materialDesign:ElevationAssist.Elevation="Dp4">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="#1E293B" CornerRadius="25,25,0,0" Padding="15">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Warehouse" Foreground="#38BDF8" Width="26" Height="26" Margin="0,0,10,0"/>
+                    <TextBlock Text="STOK DEPOSU" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <DataGrid x:Name="dgStok" Grid.Row="1" Margin="10" AutoGenerateColumns="False" IsReadOnly="True" 
+                      Background="Transparent" BorderThickness="0" GridLinesVisibility="None" RowHeight="55" 
+                      ColumnHeaderHeight="45" SelectionUnit="FullRow" SelectionChanged="dgStok_SelectionChanged"
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.CanContentScroll="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Ürün" Binding="{Binding urun_adi}" Width="250"/>
+                            <DataGridTextColumn Header="Depolanan Yer" Binding="{Binding depo_yeri}" Width="250"/>
+                    <DataGridTextColumn Header="Kategori" Binding="{Binding kategori}" Width="180"/>
+                    <DataGridTextColumn Header="Birim" Binding="{Binding birim}" Width="120"/>
+                    <DataGridTextColumn Header="Stok" Binding="{Binding mevcut_stok, StringFormat='{}{0:G29}'}" Width="150"/>
+                    <DataGridTemplateColumn Header="GÜNCELLE" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignIconButton}" Foreground="SteelBlue" Width="30" Height="30" Click="Guncelle1_Click">
+                                    <materialDesign:PackIcon Kind="PencilOutline" Width="18"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="SİL" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignIconButton}" Foreground="#EF4444" Width="30" Height="30" Click="Sil1_Click">
+                                    <materialDesign:PackIcon Kind="DeleteOutline" Width="18"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </materialDesign:Card>
+
+    <!-- 2. KART: STOK HAREKET -->
+    <materialDesign:Card Grid.Row="0" Grid.Column="1" Margin="8" UniformCornerRadius="25" materialDesign:ElevationAssist.Elevation="Dp4">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="#1E293B" CornerRadius="25,25,0,0" Padding="15">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="SwapHorizontal" Foreground="#FBBF24" Width="26" Height="26" Margin="0,0,10,0"/>
+                    <TextBlock Text="STOK HAREKET" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <DataGrid x:Name="dgStokHareket" Grid.Row="1" Margin="10" AutoGenerateColumns="False" IsReadOnly="True" 
+                      Background="Transparent" BorderThickness="0" GridLinesVisibility="None" RowHeight="55" 
+                      ColumnHeaderHeight="45" SelectionUnit="FullRow" SelectionChanged="dgStokhareketi_SelectionChanged"
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.CanContentScroll="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="İşlem" Binding="{Binding islem_turu}" Width="220"/>
+                           
+                    <DataGridTextColumn Header="Miktar" Binding="{Binding miktar, StringFormat='{}{0:G29}'}" Width="180"/>
+                            <DataGridTextColumn Header="fiyat" Binding="{Binding birim_fiyat, StringFormat='{}{0:G29}'}" Width="180"/>
+                            <DataGridTextColumn Header="Toplam Tutarı" Binding="{Binding toplam_tutar, StringFormat='{}{0:G29}'}" Width="180"/>
+                            <DataGridTextColumn Header="TARİH" Binding="{Binding tarih, StringFormat=\{0:dd.MM.yyyy\}}" Width="110"/>
+
+                           <DataGridTextColumn Header="Açıklama" Binding="{Binding aciklama}" Width="220"/>
+                            <DataGridTemplateColumn Header="GÜNCELLE" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignIconButton}" Foreground="SteelBlue" Width="30" Height="30" Click="Guncelle2_Click">
+                                    <materialDesign:PackIcon Kind="PencilOutline" Width="18"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="SİL" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignIconButton}" Foreground="#EF4444" Width="30" Height="30" Click="Sil2_Click">
+                                    <materialDesign:PackIcon Kind="DeleteOutline" Width="18"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </materialDesign:Card>
+
+    <!-- 3. KART: RASYONLAR -->
+    <materialDesign:Card Grid.Row="1" Grid.Column="0" Margin="8" UniformCornerRadius="25" materialDesign:ElevationAssist.Elevation="Dp4">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="#1E293B" CornerRadius="25,25,0,0" Padding="15">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="ClipboardList" Foreground="#A78BFA" Width="26" Height="26" Margin="0,0,10,0"/>
+                    <TextBlock Text="RASYONLAR" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <DataGrid x:Name="dgRasyonlar" Grid.Row="1" Margin="10" AutoGenerateColumns="False" IsReadOnly="True" 
+                      SelectionChanged="dgRasyonlar_SelectionChanged"
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.CanContentScroll="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Rasyon" Binding="{Binding rasyon_adi}" Width="280"/>
+                    <DataGridTextColumn Header="Hedef" Binding="{Binding hedef_hayvan}" Width="220"/>
+                            <DataGridTextColumn Header="Açıklama" Binding="{Binding aciklama}" Width="220"/>
+                    <DataGridTemplateColumn Header="GÜNCELLE" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignIconButton}" Foreground="SteelBlue" Width="30" Height="30" Click="Guncelle3_Click">
+                                    <materialDesign:PackIcon Kind="PencilOutline" Width="18"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="SİL" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignIconButton}" Foreground="#EF4444" Width="30" Height="30" Click="Sil3_Click">
+                                    <materialDesign:PackIcon Kind="DeleteOutline" Width="18"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </materialDesign:Card>
+
+    <!-- 4. KART: RASYON DETAY -->
+    <materialDesign:Card Grid.Row="1" Grid.Column="1" Margin="8" UniformCornerRadius="25" materialDesign:ElevationAssist.Elevation="Dp4">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="#1E293B" CornerRadius="25,25,0,0" Padding="15">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="ChartBox" Foreground="#34D399" Width="26" Height="26" Margin="0,0,10,0"/>
+                    <TextBlock Text="RASYON DETAY" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <DataGrid x:Name="dgRasyonDetay" Grid.Row="1" Margin="10" AutoGenerateColumns="False" IsReadOnly="True" 
+                      SelectionChanged="dgRasyonDetay_SelectionChanged"
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.CanContentScroll="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Rasyon" Binding="{Binding rasyon_adi}" Width="220"/>
+                    <DataGridTextColumn Header="Ürün" Binding="{Binding urun_adi}" Width="220"/>
+                    <DataGridTextColumn Header="Miktar" Binding="{Binding miktar, StringFormat='{}{0:G29}'}" Width="180"/>
+                    <DataGridTemplateColumn Header="GÜNCELLE" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignIconButton}" Foreground="SteelBlue" Width="30" Height="30" Click="Guncelle4_Click">
+                                    <materialDesign:PackIcon Kind="PencilOutline" Width="18"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="SİL" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignIconButton}" Foreground="#EF4444" Width="30" Height="30" Click="Sil4_Click">
+                                    <materialDesign:PackIcon Kind="DeleteOutline" Width="18"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </materialDesign:Card>
+
+
+        </Grid>
+
+
+
+
+
+
+
+
+
+
+       
+        <Border Grid.Row="1"
+        Grid.RowSpan="3"
+        Grid.Column="1"
+        Background="White"
+        CornerRadius="20"
+        Padding="25">
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20"
+                          ShadowDepth="4"
+                          Opacity="0.1"
+                          Color="#1A237E"/>
+            </Border.Effect>
+
+            <ScrollViewer VerticalScrollBarVisibility="Hidden"
+              HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+
+                   
+                    <TextBlock Text="Rasyon ve Stok Yönetimi"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="#1E293B"/>
+
+                    <TextBlock Text="Tbl_Stok - Tbl_StokHareket - Tbl_Rasyonlar - Tbl_RasyonDetay uyumlu işlem paneli"
+                       Margin="0,5,0,25"
+                       Foreground="#64748B"/>
+
+                
+                    <GroupBox Header="STOK BİLGİLERİ"
+                      Style="{StaticResource MaterialDesignCardGroupBox}"
+                      Margin="0,0,0,25"
+                      Padding="15">
+
+                        <StackPanel>
+
+                        
+                            <ComboBox x:Name="cbUrunAdi" Margin="0,0,0,8"
+              Grid.Column="0"
+              materialDesign:HintAssist.Hint="Ürün Adı"
+              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+              materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+              Height="55">
+
+                                <ComboBoxItem Content="Saman"/>
+                                <ComboBoxItem Content="Yonca"/>
+                                <ComboBoxItem Content="Yulaf"/>
+                                <ComboBoxItem Content="Mısır Slajı"/>
+                                <ComboBoxItem Content="Küspe"/>
+                                <ComboBoxItem Content="Arpa"/>
+                                <ComboBoxItem Content="Fığ"/>
+                                <ComboBoxItem Content="Süt yemi"/>
+
+                            </ComboBox>
+
+
+
+                            <Grid Margin="0,0,0,15">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                               
+
+                                <ComboBox x:Name="cbKategori"
+                                    Grid.Column="0"
+                                    materialDesign:HintAssist.Hint="Kategori"
+                                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                    materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                                    Height="55">
+
+                                    <ComboBoxItem Content="Balya"/>
+                                    <ComboBoxItem Content="Slaj"/>
+                                    <ComboBoxItem Content="Yem"/>
+                                    <ComboBoxItem Content="Küspe"/>
+                                    <ComboBoxItem Content="Ot"/>
+                                </ComboBox>
+
+
+
+                                <ComboBox x:Name="cbBirim"
+                                  Grid.Column="2"
+                                  materialDesign:HintAssist.Hint="Birim"
+                                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                  materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                                  Height="55">
+
+                                    <ComboBoxItem Content="KG"/>
+                                    <ComboBoxItem Content="Ton"/>
+                                    <ComboBoxItem Content="Litre"/>
+                                    <ComboBoxItem Content="Adet"/>
+
+                                </ComboBox>
+
+                            </Grid>
+
+                           <Grid Margin="0,0,0,15">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox x:Name="txtMevcutStok" kısıtlamalar:InputKisitlayici.SadeceSayi="True"
+                                 Grid.Column="0"
+                                 materialDesign:HintAssist.Hint="Mevcut Stok"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                                 Height="55"/>
+
+                                <TextBox x:Name="txtKritikStok" kısıtlamalar:InputKisitlayici.SadeceSayi="True"
+                                 Grid.Column="2"
+                                 materialDesign:HintAssist.Hint="Kritik Stok"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                                 Height="55"/>
+
+                            </Grid>
+                            
+                           
+                        
+
+                         
+
+                                <ComboBox x:Name="cbDepoYeri"
+      Grid.Column="2" Margin="0,0,0,10"
+      materialDesign:HintAssist.Hint="Depo Yeri"
+      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+      materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+      Height="55">
+
+                                    <ComboBoxItem Content="Samanlık"/>
+                                    <ComboBoxItem Content="Ahır"/>
+                                    <ComboBoxItem Content="Tarla"/>
+
+                                </ComboBox>
+
+
+
+
+                           
+                            <Button 
+                            Height="50"
+                            Background="#2563EB"
+                            Foreground="White"
+                            BorderThickness="0"
+                            materialDesign:ButtonAssist.CornerRadius="12"
+                            Click="btnStokKaydet_Click">
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <materialDesign:PackIcon Kind="DatabasePlus"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,10,0"/>
+
+                                    <TextBlock Text="STOK KAYDET"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+
+                                </StackPanel>
+
+                            </Button>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                  <GroupBox Header="STOK HAREKETLERİ"
+                      Style="{StaticResource MaterialDesignCardGroupBox}"
+                      Margin="0,0,0,25"
+                      Padding="15">
+
+                        <StackPanel>
+
+                           
+                            <ComboBox x:Name="cbStokSec"
+                              materialDesign:HintAssist.Hint="Stok Seç"
+                              IsEditable="True"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                              materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                              Height="55"
+                              Margin="0,0,0,15"/>
+
+                            
+                            <Grid Margin="0,0,0,15">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ComboBox x:Name="cbIslemTuru"
+                                  Grid.Column="0"
+                                  materialDesign:HintAssist.Hint="İşlem Türü"
+                                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                  materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                                  Height="55">
+
+                                    <ComboBoxItem Content="Giriş"/>
+                                    <ComboBoxItem Content="Çıkış"/>
+
+                                </ComboBox>
+
+                                <DatePicker x:Name="dpTarih"
+                                    Grid.Column="2"
+                                    materialDesign:HintAssist.Hint="İşlem Tarihi"
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                    materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                                    Height="55"/>
+
+                            </Grid>
+
+                           
+                            <Grid Margin="0,0,0,15">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox x:Name="txtMiktar"
+                                 Grid.Column="0"
+                                 materialDesign:HintAssist.Hint="Miktar" kısıtlamalar:InputKisitlayici.SadeceSayi="True"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                                 Height="55"/>
+
+                                <TextBox x:Name="txtHareketBirimFiyat" kısıtlamalar:InputKisitlayici.SadeceSayi="True"
+                                 Grid.Column="2"
+                                 materialDesign:HintAssist.Hint="Birim Fiyat"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                                 Height="55"/>
+
+                            </Grid>
+
+                           
+                            <TextBox x:Name="txtHareketAciklama" kısıtlamalar:InputKisitlayici.SadeceMetin="True"
+                             TextWrapping="Wrap"
+                             Height="90"
+                             VerticalScrollBarVisibility="Auto"
+                             materialDesign:HintAssist.Hint="Açıklama"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                             Margin="0,0,0,15"/>
+
+                           
+                            <Button 
+                            Height="50"
+                            Background="#0F766E"
+                            Foreground="White"
+                            BorderThickness="0"
+                            materialDesign:ButtonAssist.CornerRadius="12"
+                            Click="btnHareketKaydet_Click">
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <materialDesign:PackIcon Kind="SwapHorizontal"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,10,0"/>
+
+                                    <TextBlock Text="STOK HAREKETİ KAYDET"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+
+                                </StackPanel>
+
+                            </Button>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                  
+
+                    <GroupBox Header="RASYON TANIMLARI"
+                      Style="{StaticResource MaterialDesignCardGroupBox}"
+                      Margin="0,0,0,25"
+                      Padding="15">
+
+                        <StackPanel>
+
+                            <TextBox x:Name="txtRasyonAdi"  kısıtlamalar:InputKisitlayici.SadeceMetin="True"
+                             materialDesign:HintAssist.Hint="Rasyon Adı"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                             Height="55"
+                             Margin="0,0,0,15"/>
+
+                            <TextBox x:Name="txtHedefHayvan" kısıtlamalar:InputKisitlayici.SadeceSayi="True"
+                             materialDesign:HintAssist.Hint="Hedef Hayvan"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                             Height="55"
+                             Margin="0,0,0,15"/>
+
+                            <TextBox x:Name="txtRasyonAciklama" kısıtlamalar:InputKisitlayici.SadeceMetin="True"
+                             materialDesign:HintAssist.Hint="Açıklama"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                             Height="90"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                             Margin="0,0,0,15"/>
+
+                           
+                            <Button 
+                            Height="50"
+                            Background="#7C3AED"
+                            Foreground="White"
+                            BorderThickness="0"
+                            materialDesign:ButtonAssist.CornerRadius="12"
+                            Click="btnRasyonKaydet_Click">
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <materialDesign:PackIcon Kind="FoodApple"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,10,0"/>
+
+                                    <TextBlock Text="RASYON KAYDET"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+
+                                </StackPanel>
+
+                            </Button>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                 
+
+                    <GroupBox Header="RASYON İÇERİĞİ"
+                      Style="{StaticResource MaterialDesignCardGroupBox}"
+                      Margin="0,0,0,15"
+                      Padding="15">
+
+                        <StackPanel>
+
+                          
+                            <ComboBox x:Name="cbRasyonSec"
+                              materialDesign:HintAssist.Hint="Rasyon Seç"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                              materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                              Height="55"
+                              Margin="0,0,0,15"/>
+
+                            
+                            <ComboBox x:Name="cbRasyonStok"
+                              materialDesign:HintAssist.Hint="Stok / Hammadde"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                              materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                              Height="55"
+                              Margin="0,0,0,15"/>
+
+                            
+                            <TextBox x:Name="txtRasyonMiktar" kısıtlamalar:InputKisitlayici.SadeceSayi="True"
+                             materialDesign:HintAssist.Hint="Miktar"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:TextFieldAssist.TextFieldCornerRadius="12"
+                             Height="55"
+                             Margin="0,0,0,15"/>
+
+                         
+                            <Button 
+                            Height="50"
+                            Background="#EA580C"
+                            Foreground="White"
+                            BorderThickness="0"
+                            materialDesign:ButtonAssist.CornerRadius="12"
+                            Click="btnRasyonDetayKaydet_Click">
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <materialDesign:PackIcon Kind="PlaylistPlus"
+                                                     Width="22"
+                                                     Height="22"
+                                                     Margin="0,0,10,0"/>
+
+                                    <TextBlock Text="RASYON İÇERİĞİ EKLE"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+
+                                </StackPanel>
+
+                            </Button>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                </StackPanel>
+
+            </ScrollViewer>
+
+        </Border>
+
+    </Grid>
+</UserControl>
